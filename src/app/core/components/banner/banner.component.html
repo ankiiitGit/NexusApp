@@ -1,0 +1,20 @@
+<iframe class="w-full h-full absolute" src="https://www.youtube.com/embed/1ibisLk5ozA?autoplay=1&mute=1&loop=1&controls=0&rel=0&playlist=1ibisLk5ozA" frameborder="0"></iframe>
+
+<div class="h-screen bg-white">
+    <div class="pt-[15%] px-24 absolute h-full text-white bg-gradient-to-r from-black">
+      <!-- <h1 class="text-6xl font-bold">Welcome to One Cognizant</h1> -->
+      <h1 class="text-6xl font-bold">
+        <span class="text-white">Welcome to</span> 
+        <span class="text-sky-500"> One Cognizant</span>
+      </h1>
+      <p class="inline-block py-6 text-xl w-1/4 flex-wrap"> Intuition Engineered</p>
+    <div>
+      <button class="mx-2 bg-blue-950/50 text-white px-12 py-4 text-xl hover:bg-blue-950/100 rounded-lg" (click)="onMoreInfoClick()">
+        More Info
+      </button>
+      <div *ngIf="showInfo" class="mt-4 p-4 bg-gray-800 text-white rounded-lg">
+        <p>One Cognizant is an internal portal for Cognizant employees that acts as a centralized hub for various company-related information and applications.</p>
+      </div>
+    </div>
+    </div>
+  </div>
