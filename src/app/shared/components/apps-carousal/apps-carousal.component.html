@@ -1,0 +1,106 @@
+<div class="container px-20 mt-14 mb-20">
+  <div class="flex items-center my-3 ml-3">
+    <p class="font-semibold text-2xl mr-4">{{title}}</p>
+    <a class="ml-auto bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition flex items-center justify-center no-underline"
+     [routerLink]="['/app-store']">
+    View All
+    </a>
+  </div>
+  <div #swiperContainer class="swiper-container">
+    <div class="swiper-wrapper">
+    <ng-container *ngFor="let app of appsContents">
+      <div 
+      class="swiper-slide relative overflow-hidden rounded-lg shadow-lg" 
+      style="margin-right: 10px; background: linear-gradient(135deg, #e0e7ff 0%, #f0fdfa 100%); min-height: 240px;"
+      >
+      <div 
+        class="absolute inset-0 opacity-30"
+        style="background-image: url('/assets/app-bg-pattern.png'); background-size: cover; background-position: center;"
+      ></div>
+      <a href={{app.launchUrl}} target="_blank" class="relative z-10 flex justify-center">
+        <img *ngIf="app.iconUrl && app.iconUrl.trim()" src="/{{app.iconUrl}}" alt="" style="height: 200px; width: 305.77px; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);" />
+        <img *ngIf="!app.iconUrl || !app.iconUrl.trim()" src="/breakingNews.jpeg" alt="" style="height: 200px; width: 305.77px; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);" />
+      </a>
+      <div class="desc p-2 relative z-10">
+        <span class="text-base flex flex-wrap font-bold">{{app.name| description:50}}</span>
+        <p class="text-xs my-3">{{app.description| description:130}}</p>  
+        <div class="py-3 absolute w-[90%] bottom-1">
+        <p class="text-xs flex justify-between items-center">
+          <span class="text-green-500">#Application</span>
+          <i class="fa fa-2x fa-chevron-circle-down" aria-hidden="true"></i>
+        </p>
+        </div>            
+      </div>
+      </div>
+    </ng-container>
+    </div>
+  </div>  
+</div>
+
+<!-- <div class="container px-20 mt-14 mb-20">
+  <div class="flex items-center my-3 ml-3">
+    <p class="font-semibold text-2xl mr-4">{{title}}</p>
+    <a
+      class="ml-auto font-semibold text-2xl mr-4 hover:underline transition no-underline"
+      style="color: inherit; background: none; padding: 0; border: none; border-radius: 0;"
+      routerLink="/app-store"
+      >View All</a
+    >
+  </div>
+  <div #swiperContainer class="swiper-container">
+    <div class="swiper-wrapper">
+      <ng-container *ngFor="let app of appsContents">
+        <div class="swiper-slide relative" style="margin-right: 10px;">
+          <a href={{app.launchUrl}} target="_blank">
+            <img *ngIf="app.iconUrl && app.iconUrl.trim()" src="/{{app.iconUrl}}" alt="" style="height: 200px; width: 305.77px;" />
+            <img *ngIf="!app.iconUrl || !app.iconUrl.trim()" src="/breakingNews.jpeg" alt="" />
+          </a>
+          <div class="desc p-2">
+            <span class="text-base flex flex-wrap font-bold">{{app.name| description:50}}</span>
+            <p class="text-xs my-3">{{app.description| description:130}}</p>
+            <div class="py-3 absolute w-[90%] bottom-1">
+              <p class="text-xs flex justify-between items-center">
+                <span class="text-green-500">#Application</span>
+                <i class="fa fa-2x fa-chevron-circle-down" aria-hidden="true"></i>
+              </p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div class="container px-20 mt-14 mb-20">
+  <div class="flex items-center my-3 ml-3">
+    <p class="font-semibold text-2xl mr-4">{{title}}</p>
+    <a
+      class="ml-auto text-blue-600 hover:underline transition no-underline"
+      style="display: inline-block; background: none; color: #2563eb; padding: 0; border: none; border-radius: 0;"
+      routerLink="/app-store"
+      >View All</a
+    >
+  </div>
+  <div #swiperContainer class="swiper-container">
+    <div class="swiper-wrapper">
+      <ng-container *ngFor="let app of appsContents">
+        <div class="swiper-slide relative" style="margin-right: 10px;">
+          <a href={{app.launchUrl}} target="_blank">
+            <img *ngIf="app.iconUrl && app.iconUrl.trim()" src="/{{app.iconUrl}}" alt="" style="height: 200px; width: 305.77px;" />
+            <img *ngIf="!app.iconUrl || !app.iconUrl.trim()" src="/breakingNews.jpeg" alt="" />
+          </a>
+          <div class="desc p-2">
+            <span class="text-base flex flex-wrap font-bold">{{app.name| description:50}}</span>
+            <p class="text-xs my-3">{{app.description| description:130}}</p>
+            <div class="py-3 absolute w-[90%] bottom-1">
+              <p class="text-xs flex justify-between items-center">
+                <span class="text-green-500">#Application</span>
+                <i class="fa fa-2x fa-chevron-circle-down" aria-hidden="true"></i>
+              </p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div> -->
