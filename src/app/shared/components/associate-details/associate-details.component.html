@@ -1,0 +1,151 @@
+<div class="relative bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl shadow-lg p-6 h-full max-w-md mx-auto border border-blue-200 transition-transform duration-500 hover:scale-105 hover:shadow-2xl animate-fade-in overflow-hidden">
+  <!-- City SVG Background -->
+  <svg class="absolute inset-0 w-full h-full pointer-events-none select-none opacity-30" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="z-index:0;">
+    <g>
+      <rect x="10" y="120" width="30" height="70" fill="#a5b4fc"/>
+      <rect x="50" y="100" width="40" height="90" fill="#818cf8"/>
+      <rect x="100" y="140" width="25" height="50" fill="#93c5fd"/>
+      <rect x="135" y="110" width="35" height="80" fill="#60a5fa"/>
+      <rect x="180" y="130" width="28" height="60" fill="#a5b4fc"/>
+      <rect x="215" y="90" width="45" height="100" fill="#818cf8"/>
+      <rect x="270" y="120" width="30" height="70" fill="#93c5fd"/>
+      <rect x="310" y="105" width="35" height="85" fill="#60a5fa"/>
+      <rect x="355" y="135" width="25" height="55" fill="#a5b4fc"/>
+      <!-- Windows -->
+      <rect x="60" y="110" width="5" height="10" fill="#fff" opacity="0.7"/>
+      <rect x="70" y="110" width="5" height="10" fill="#fff" opacity="0.7"/>
+      <rect x="60" y="125" width="5" height="10" fill="#fff" opacity="0.7"/>
+      <rect x="70" y="125" width="5" height="10" fill="#fff" opacity="0.7"/>
+      <rect x="220" y="100" width="8" height="12" fill="#fff" opacity="0.7"/>
+      <rect x="235" y="100" width="8" height="12" fill="#fff" opacity="0.7"/>
+      <rect x="220" y="120" width="8" height="12" fill="#fff" opacity="0.7"/>
+      <rect x="235" y="120" width="8" height="12" fill="#fff" opacity="0.7"/>
+    </g>
+  </svg>
+  <div class="relative z-10">
+    <ng-container *ngFor="let associate of associateDetails">
+      <div class="flex items-center mb-4">
+        <div class="bg-blue-500 text-white rounded-full h-12 w-12 flex items-center justify-center mr-4 shadow animate-bounce-slow">
+          <!-- Person SVG Icon -->
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2" fill="white"/>
+            <path stroke="currentColor" stroke-width="2" fill="white" d="M4 20c0-2.21 3.58-4 8-4s8 1.79 8 4"/>
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-3xl font-extrabold text-blue-900 animate-slide-in-down">{{associate.name}}</h2>
+          <p class="text-base font-semibold text-blue-700 animate-fade-in delay-200">{{associate.role}}</p>
+        </div>
+      </div>
+      <div class="space-y-2">
+        <div class="flex items-center animate-slide-in-left delay-300">
+          <span class="inline-flex items-center justify-center w-6 h-6 bg-blue-100 text-blue-500 rounded-full mr-2">
+            <!-- Manager icon (user group) -->
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m9-7a4 4 0 11-8 0 4 4 0 018 0zm6 4a2 2 0 11-4 0 2 2 0 014 0zm-14 0a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+          </span>
+          <span class="text-gray-700 font-bold text-lg">Manager:</span>
+          <span class="ml-2 text-gray-900 font-semibold text-lg">{{associate.managerName}}</span>
+        </div>
+        <div class="flex items-center animate-slide-in-left delay-500">
+          <span class="inline-flex items-center justify-center w-6 h-6 bg-blue-100 text-blue-500 rounded-full mr-2">
+            <!-- Department icon (office building) -->
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 21V7a2 2 0 012-2h3V3h4v2h3a2 2 0 012 2v14M9 21v-6h6v6"/>
+            </svg>
+          </span>
+          <span class="text-gray-700 font-bold text-lg">Department:</span>
+          <span class="ml-2 text-gray-900 font-semibold text-lg">{{associate.department}}</span>
+        </div>
+        <!-- New Fields Start -->
+        <div class="flex items-center animate-slide-in-left delay-300">
+          <span class="inline-flex items-center justify-center w-6 h-6 bg-blue-100 text-blue-500 rounded-full mr-2">
+            <!-- ID icon -->
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="white"/>
+              <text x="8" y="16" font-size="8" fill="#3b82f6">ID</text>
+            </svg>
+          </span>
+          <span class="text-gray-700 font-bold text-lg">Associate ID:</span>
+          <span class="ml-2 text-gray-900 font-semibold text-lg">{{associate.associateId}}</span>
+        </div>
+        <div class="flex items-center animate-slide-in-left delay-500">
+          <span class="inline-flex items-center justify-center w-6 h-6 bg-blue-100 text-blue-500 rounded-full mr-2">
+            <!-- Email icon -->
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2" fill="white"/>
+              <path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </span>
+          <span class="text-gray-700 font-bold text-lg">Email:</span>
+          <span class="ml-2 text-gray-900 font-semibold text-lg">{{associate.email}}</span>
+        </div>
+        
+        <div class="flex items-center animate-slide-in-left delay-500">
+          <span class="inline-flex items-center justify-center w-6 h-6 bg-blue-100 text-blue-500 rounded-full mr-2">
+            <!-- Location icon -->
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 21c-4.418 0-8-5.373-8-10a8 8 0 1116 0c0 4.627-3.582 10-8 10z" stroke="currentColor" stroke-width="2" fill="white"/>
+              <circle cx="12" cy="11" r="3" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </span>
+          <span class="text-gray-700 font-bold text-lg">Office:</span>
+          <span class="ml-2 text-gray-900 font-semibold text-lg">{{associate.officeLocation}}</span>
+        </div>
+        <div class="flex items-center animate-slide-in-left delay-300">
+          <span class="inline-flex items-center justify-center w-6 h-6 bg-blue-100 text-blue-500 rounded-full mr-2">
+            <!-- Phone icon -->
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2zm12-12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zm0 12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke="currentColor" stroke-width="2" fill="white"/>
+              <path d="M8 12h8" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </span>
+          <span class="text-gray-700 font-bold text-lg">Phone:</span>
+          <span class="ml-2 text-gray-900 font-semibold text-lg">{{associate.phone}}</span>
+        </div>        
+        <!-- New Fields End -->
+      </div>
+    </ng-container>    
+  </div>
+</div>
+
+<style>
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slide-in-down {
+  from { opacity: 0; transform: translateY(-20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-20px);}
+  to { opacity: 1; transform: translateX(0);}
+}
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0);}
+  50% { transform: translateY(-8px);}
+}
+.animate-fade-in {
+  animation: fade-in 0.8s ease;
+}
+.animate-slide-in-down {
+  animation: slide-in-down 0.7s cubic-bezier(.4,0,.2,1);
+}
+.animate-slide-in-left {
+  animation: slide-in-left 0.7s cubic-bezier(.4,0,.2,1);
+}
+.animate-bounce-slow {
+  animation: bounce-slow 2s infinite;
+}
+.delay-200 {
+  animation-delay: 0.2s;
+}
+.delay-300 {
+  animation-delay: 0.3s;
+}
+.delay-500 {
+  animation-delay: 0.5s;
+}
+</style>
