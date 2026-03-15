@@ -1,0 +1,141 @@
+<div class="relative bg-gradient-to-br from-blue-50 via-purple-50 to-blue-100 rounded-2xl shadow-lg p-6 h-full max-w-md w-full mx-auto border border-blue-200 flex flex-col gap-4 animate-fade-in overflow-hidden hover:scale-105 hover:shadow-2xl">
+  <!-- Animated wind background -->
+  <div class="absolute inset-0 pointer-events-none z-0">
+    <svg class="wind-svg wind-1" viewBox="0 0 500 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="wind-path"
+        d="M0 20 Q 60 0, 120 20 T 240 20 T 360 20 T 480 20"
+        stroke="url(#windGradient1)" stroke-width="14" fill="none" />
+      <defs>
+        <linearGradient id="windGradient1" x1="0" y1="0" x2="500" y2="0" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#60a5fa" />
+          <stop offset="0.5" stop-color="#a78bfa" />
+          <stop offset="1" stop-color="#38bdf8" />
+        </linearGradient>
+      </defs>
+    </svg>
+    <svg class="wind-svg wind-2" viewBox="0 0 500 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="wind-path"
+        d="M0 15 Q 80 35, 160 15 T 320 15 T 480 15"
+        stroke="url(#windGradient2)" stroke-width="10" fill="none" />
+      <defs>
+        <linearGradient id="windGradient2" x1="0" y1="0" x2="500" y2="0" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#818cf8" />
+          <stop offset="0.5" stop-color="#f472b6" />
+          <stop offset="1" stop-color="#22d3ee" />
+        </linearGradient>
+      </defs>
+    </svg>
+    <svg class="wind-svg wind-3" viewBox="0 0 500 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="wind-path"
+        d="M0 10 Q 100 -10, 200 10 T 400 10 T 500 10"
+        stroke="url(#windGradient3)" stroke-width="7" fill="none" />
+      <defs>
+        <linearGradient id="windGradient3" x1="0" y1="0" x2="500" y2="0" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#38bdf8" />
+          <stop offset="0.5" stop-color="#a7f3d0" />
+          <stop offset="1" stop-color="#f0abfc" />
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+  <h2 class="relative z-10 text-lg font-bold mb-2 text-blue-900 flex items-center gap-2">
+    <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+    </svg>
+    Upcoming Holidays & Leaves
+  </h2>
+  <ng-container *ngFor="let holiday of holidayDetails">
+    <div class="relative z-10 flex items-center gap-3 bg-white rounded-lg px-4 py-2 shadow-sm border border-blue-100 transition-transform duration-500 ease-out hover:scale-105 animate-slide-up delay-100">
+    <span class="inline-flex items-center justify-center w-8 h-8 bg-gradient-to-br from-blue-200 via-cyan-100 to-blue-100 text-blue-700 rounded-full font-semibold shadow-inner animate-pop delay-200 border-2 border-blue-300">15</span>
+    <div>
+      <p class="text-sm font-medium text-blue-800">{{holiday.title}}</p>
+      <p class="text-xs text-blue-500">{{ holiday.date | date:'d MMM' }}</p>
+    </div>
+  </div>
+  </ng-container>
+  <ng-container *ngFor="let leave of leaveDetails">
+    <div class="relative z-10 flex items-center gap-3 bg-white rounded-lg px-4 py-2 shadow-sm border border-green-100 transition-transform duration-500 ease-out hover:scale-105 animate-slide-up delay-300">
+    <span class="inline-flex items-center justify-center w-8 h-8 bg-gradient-to-br from-green-200 via-lime-100 to-green-100 text-green-700 rounded-full font-semibold shadow-inner animate-pop delay-400 border-2 border-green-300">{{leave.startDate | date:'d'}}–{{leave.endDate| date:'d'}}</span>
+    <div>
+      <p class="text-sm font-medium text-green-800">{{leave.reason}} Leave</p>
+      <p class="text-xs text-green-500">{{leave.startDate | date:'d'}}–{{leave.endDate| date:'d'}} {{leave.startDate | date:'MMM'}}</p>
+    </div>
+  </div>
+  </ng-container>  
+</div>
+<style>
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(40px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+@keyframes pop {
+  0% { transform: scale(0.7);}
+  70% { transform: scale(1.15);}
+  100% { transform: scale(1);}
+}
+/* SVG wind wave animation */
+@keyframes wind-wave-move {
+  0% { transform: translateX(-60px);}
+  100% { transform: translateX(560px);}
+}
+.wind-svg {
+  position: absolute;
+  left: 0;
+  width: 500px;
+  pointer-events: none;
+  opacity: 0.45;
+  filter: blur(0.5px) drop-shadow(0 2px 8px #a5b4fc88);
+  will-change: transform;
+}
+.wind-1 {
+  top: 16%;
+  height: 40px;
+  z-index: 1;
+  animation: wind-wave-move 4.5s linear infinite;
+  animation-delay: 0s;
+  opacity: 0.55;
+}
+.wind-2 {
+  top: 44%;
+  height: 30px;
+  z-index: 1;
+  animation: wind-wave-move 6s linear infinite;
+  animation-delay: 1.5s;
+  opacity: 0.38;
+}
+.wind-3 {
+  top: 72%;
+  height: 20px;
+  z-index: 1;
+  animation: wind-wave-move 7.5s linear infinite;
+  animation-delay: 3s;
+  opacity: 0.32;
+}
+.wind-path {
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px #60a5fa88);
+}
+.animate-fade-in {
+  animation: fade-in 0.7s cubic-bezier(.4,0,.2,1) both;
+}
+.animate-slide-up {
+  animation: slide-up 0.7s cubic-bezier(.4,0,.2,1) both;
+}
+.animate-pop {
+  animation: pop 0.5s cubic-bezier(.4,0,.2,1) both;
+}
+.delay-100 { animation-delay: 0.1s;}
+.delay-200 { animation-delay: 0.2s;}
+.delay-300 { animation-delay: 0.3s;}
+.delay-400 { animation-delay: 0.4s;}
+</style>
+
+<!-- <div class="bg-white rounded-xl shadow-md p-4 h-full">
+  <h2 class="text-lg font-bold mb-2 text-black">Upcoming Holidays & Leaves</h2>
+  <p class="text-black">Holiday: Independence Day - 15 Aug</p>
+  <p class="text-black">Leave: 22–24 Aug (Vacation)</p>  
+</div> -->

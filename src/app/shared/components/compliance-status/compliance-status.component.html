@@ -1,0 +1,129 @@
+<div class="relative bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl shadow-lg p-6 h-full max-w-md w-full mx-auto border border-blue-200 flex flex-col items-start gap-4 overflow-hidden hover:scale-105 hover:shadow-2xl">
+  <!-- Particle Animation Layer -->
+  <div class="absolute inset-0 pointer-events-none z-0">
+    <div class="particle particle-1"></div>
+    <div class="particle particle-2"></div>
+    <div class="particle particle-3"></div>
+    <div class="particle particle-4"></div>
+    <div class="particle particle-5"></div>
+    <div class="particle particle-6"></div>
+    <div class="particle particle-7"></div>
+    <div class="particle particle-8"></div>
+    <div class="particle particle-9"></div>
+    <div class="particle particle-10"></div>
+    <div class="particle particle-11"></div>
+    <div class="particle particle-12"></div>
+  </div>
+  <h2 class="relative z-10 text-2xl font-extrabold mb-1 text-gray-900 flex items-center gap-2">
+    <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2l4 -4"></path>
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"></circle>
+    </svg>
+    Compliance Status
+  </h2>  
+  <ul class="relative z-10 w-full space-y-2">
+    <li class="flex items-center justify-between px-3 py-2 rounded-lg bg-gray-50">
+      <span class="text-gray-700 font-medium">Timesheet</span>
+      <span *ngIf="complianceDetails?.timesheetCompliance; else timesheetCross" class="text-green-600 text-xl animate-bounce transition-transform duration-500">
+        <!-- Tick SVG -->
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </span>
+      <ng-template #timesheetCross>
+        <span class="text-red-500 text-xl animate-pulse transition-transform duration-500">
+          <!-- Cross SVG -->
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="6" y1="18" x2="18" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+      </ng-template>
+    </li>
+    <li class="flex items-center justify-between px-3 py-2 rounded-lg bg-gray-50">
+      <span class="text-gray-700 font-medium">Laptop</span>
+      <span *ngIf="complianceDetails?.laptopCompliance; else laptopCross" class="text-green-600 text-xl animate-bounce transition-transform duration-500">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </span>
+      <ng-template #laptopCross>
+        <span class="text-red-500 text-xl animate-pulse transition-transform duration-500">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="6" y1="18" x2="18" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+      </ng-template>
+    </li>
+    <li class="flex items-center justify-between px-3 py-2 rounded-lg bg-gray-50">
+      <span class="text-gray-700 font-medium">Training</span>
+      <span *ngIf="complianceDetails?.trainingCompliance; else trainingCross" class="text-green-600 text-xl animate-bounce transition-transform duration-500">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </span>
+      <ng-template #trainingCross>
+        <span class="text-red-500 text-xl animate-pulse transition-transform duration-500">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="6" y1="18" x2="18" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+      </ng-template>
+    </li>
+  </ul>
+  <!-- Compliance Message -->
+  <div class="relative z-10 w-full mt-4">
+    <div *ngIf="complianceDetails?.timesheetCompliance && complianceDetails?.laptopCompliance && complianceDetails?.trainingCompliance; else notCompliantMsg"
+      class="text-green-700 font-semibold text-center w-full">
+      Congratulations! You are compliant.
+    </div>
+    <ng-template #notCompliantMsg>
+      <div class="text-blue-700 font-semibold text-center w-full">
+        Great going! You can do better.
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<style>
+.particle {
+  position: absolute;
+  top: -15px;
+  border-radius: 50%;
+  opacity: 0.7;
+  width: 8px;
+  height: 8px;
+  animation: fall 3s linear infinite;
+}
+.particle-1 { left: 10%; background: #60a5fa; animation-delay: 0s; }
+.particle-2 { left: 18%; background: #fbbf24; width: 6px; height: 6px; animation-delay: 0.3s; }
+.particle-3 { left: 26%; background: #34d399; width: 5px; height: 5px; animation-delay: 0.6s; }
+.particle-4 { left: 34%; background: #f472b6; width: 7px; height: 7px; animation-delay: 0.9s; }
+.particle-5 { left: 42%; background: #a78bfa; width: 4px; height: 4px; animation-delay: 1.2s; }
+.particle-6 { left: 50%; background: #f87171; width: 9px; height: 9px; animation-delay: 1.5s; }
+.particle-7 { left: 58%; background: #60a5fa; width: 8px; height: 8px; animation-delay: 1.8s; }
+.particle-8 { left: 66%; background: #fbbf24; width: 6px; height: 6px; animation-delay: 2.1s; }
+.particle-9 { left: 74%; background: #34d399; width: 5px; height: 5px; animation-delay: 2.4s; }
+.particle-10 { left: 82%; background: #f472b6; width: 7px; height: 7px; animation-delay: 2.8s; }
+.particle-11 { left: 90%; background: #a78bfa; width: 4px; height: 4px; animation-delay: 3.2s; }
+.particle-12 { left: 95%; background: #f87171; width: 9px; height: 9px; animation-delay: 3.7s; }
+
+@keyframes fall {
+  0% {
+    top: -15px;
+    opacity: 0.7;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  80% {
+    opacity: 0.8;
+    transform: translateY(130px) scale(1.1) rotate(20deg);
+  }
+  100% {
+    top: 130px;
+    opacity: 0;
+    transform: translateY(150px) scale(0.9) rotate(45deg);
+  }
+}
+</style>
