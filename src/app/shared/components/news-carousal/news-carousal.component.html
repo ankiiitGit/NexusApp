@@ -1,0 +1,25 @@
+<div class="container px-20 mt-14 mb-20">
+    <p class="font-semibold text-2xl my-3 ml-3">{{title}}</p>
+    <div #swiperContainer class="swiper-container">
+      <div class="swiper-wrapper">
+        <ng-container *ngFor="let news of newsContents">
+            <div class="swiper-slide relative" style="margin-right: 10px;">
+            <a href={{news.link}} target="_blank">
+              <img *ngIf="news.thumbnail_url && news.thumbnail_url.trim()" src={{news.photo_url}} alt="" style="height: 200px; width: 305.77px;" />
+              <img *ngIf="!news.thumbnail_url || !news.thumbnail_url.trim()" src="/breakingNews.jpeg" alt="" />
+            </a>
+            <div class="desc p-2">
+              <span class="text-base flex flex-wrap font-bold">{{news.title | description:50}}</span>
+              <p class="text-xs my-3">{{news.snippet | description:130}}</p>  
+              <div class="py-3 absolute w-[90%] bottom-1">
+                <p class="text-xs flex justify-between items-center">
+                  <span class="text-green-500">Source : {{news.source_name}}</span>
+                  <i class="fa fa-2x fa-chevron-circle-down" aria-hidden="true"></i>
+                </p>
+              </div>            
+            </div>
+            </div>
+        </ng-container>
+      </div>
+    </div>  
+</div>

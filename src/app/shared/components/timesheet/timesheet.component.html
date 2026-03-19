@@ -1,0 +1,482 @@
+<app-header [userImg]="userProfileImg"></app-header>
+<br>
+<div class="fullscreen-bg">
+    <div class="timesheet-container">
+        <header class="timesheet-header">
+            <button type="button" class="add-row-btn" style="padding: 8px 18px; background: #e5e7eb; color: #2d3a4b; font-weight: 500; box-shadow: none;" (click)="goToAppStore()">
+                &#8592; Back
+            </button>
+            <h2 style="margin: 0; flex: 1; text-align: center;">Timesheet App</h2>
+            <button class="add-row-btn" (click)="addRow()">+ Add Entry</button>
+        </header>
+        <form class="timesheet-form" #timesheetForm="ngForm">
+            <table class="timesheet-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Project</th>
+                        <th>Task</th>
+                        <th>Hours</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let entry of timesheetEntries; let i = index" [@rowAnimation]>
+                        <td>
+                            <input type="date" [(ngModel)]="entry.date" name="date{{i}}" required />
+                        </td>
+                        <td>
+                            <select [(ngModel)]="entry.project" [name]="'project' + i" required>
+                                <option value="" disabled>Select Project</option>
+                                <option *ngFor="let project of projects" [value]="project.name">{{project.name}}</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" [(ngModel)]="entry.task" name="task{{i}}" placeholder="Task description" required />
+                        </td>
+                        <td>
+                            <input type="number" min="0" max="24" step="0.25" [(ngModel)]="entry.hours" name="hours{{i}}" required />
+                        </td>
+                        <td>
+                            <span class="status" [ngClass]="entry.status">{{entry.status}}</span>
+                        </td>
+                        <td>
+                            <button type="button" class="delete-btn" (click)="removeRow(i)">
+                                <span>&#10005;</span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="timesheet-footer">
+                <div class="total-hours">
+                    Total Hours: <strong>{{ getTotalHours() }}</strong>
+                </div>
+                <button type="submit" class="submit-btn" [disabled]="!timesheetForm.form.valid" (click)="submitTimesheet()">
+                    Submit Timesheet
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<app-footer></app-footer>
+
+<style>
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+.fullscreen-bg {
+    min-height: 100vh;
+    min-width: 100vw;
+    width: 100vw;
+    height: 100vh;
+    background: #f4f7fb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.timesheet-container {
+    max-width: 900px;
+    width: 100%;
+    margin: 0;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.15);
+    padding: 32px 40px 24px 40px;
+    animation: fadeIn 1s;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.timesheet-form {
+    width: 100%;
+}
+.timesheet-table {
+    margin-left: auto;
+    margin-right: auto;
+}
+.timesheet-table input,
+.timesheet-table select,
+.timesheet-table textarea {
+    color: #2d3a4b;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(40px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+.timesheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    width: 100%;
+}
+.timesheet-header h2 {
+    font-size: 2rem;
+    color: #2d3a4b;
+    margin: 0;
+    letter-spacing: 1px;
+}
+.add-row-btn {
+    background: #4f8cff;
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-shadow: 0 2px 8px rgba(79,140,255,0.08);
+}
+.add-row-btn:hover {
+    background: #2563eb;
+}
+.timesheet-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin-bottom: 18px;
+}
+.timesheet-table th, .timesheet-table td {
+    text-align: left;
+    padding: 12px 10px;
+}
+.timesheet-table th {
+    background: #f6f8fa;
+    color: #3a4a5d;
+    font-weight: 600;
+    border-radius: 6px 6px 0 0;
+}
+.timesheet-table tbody tr {
+    background: #f9fbfd;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.04);
+    transition: box-shadow 0.2s;
+}
+.timesheet-table tbody tr:hover {
+    box-shadow: 0 4px 16px rgba(44,62,80,0.10);
+}
+.timesheet-table input[type="date"],
+.timesheet-table input[type="text"],
+.timesheet-table input[type="number"],
+.timesheet-table select {
+    width: 100%;
+    padding: 7px 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    background: #fff;
+    font-size: 1rem;
+    transition: border 0.2s;
+}
+.timesheet-table input:focus,
+.timesheet-table select:focus {
+    border-color: #4f8cff;
+    outline: none;
+}
+.status {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    display: inline-block;
+}
+.status.Approved { background: #e6f9e6; color: #1a7f37;}
+.status.Pending { background: #fffbe6; color: #b59f00;}
+.status.Rejected { background: #ffeaea; color: #d32f2f;}
+.delete-btn {
+    background: none;
+    border: none;
+    color: #d32f2f;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s;
+    padding: 4px 8px;
+}
+.delete-btn:hover {
+    background: #ffeaea;
+}
+.timesheet-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 18px;
+    width: 100%;
+}
+.total-hours {
+    font-size: 1.1rem;
+    color: #2d3a4b;
+}
+.submit-btn {
+    background: linear-gradient(90deg, #4f8cff 0%, #2563eb 100%);
+    color: #fff;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(79,140,255,0.10);
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.submit-btn:disabled {
+    background: #bcd6fa;
+    cursor: not-allowed;
+}
+.submit-btn:hover:not(:disabled) {
+    background: linear-gradient(90deg, #2563eb 0%, #4f8cff 100%);
+    box-shadow: 0 4px 16px rgba(79,140,255,0.18);
+}
+</style>
+
+
+<!-- <div class="fullscreen-bg">
+    <div class="timesheet-container">
+        <header class="timesheet-header">
+            <h2>Timesheet App</h2>
+            <button class="add-row-btn" (click)="addRow()">+ Add Entry</button>
+        </header>
+        <form class="timesheet-form" #timesheetForm="ngForm">
+            <table class="timesheet-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Project</th>
+                        <th>Task</th>
+                        <th>Hours</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let entry of timesheetEntries; let i = index" [@rowAnimation]>
+                        <td>
+                            <input type="date" [(ngModel)]="entry.date" name="date{{i}}" required />
+                        </td>
+                        <td>
+                            <select [(ngModel)]="entry.project" [name]="'project' + i" required>
+                                <option value="" disabled>Select Project</option>
+                                <option *ngFor="let project of projects" [value]="project.name">{{project.name}}</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" [(ngModel)]="entry.task" name="task{{i}}" placeholder="Task description" required />
+                        </td>
+                        <td>
+                            <input type="number" min="0" max="24" step="0.25" [(ngModel)]="entry.hours" name="hours{{i}}" required />
+                        </td>
+                        <td>
+                            <span class="status" [ngClass]="entry.status">{{entry.status}}</span>
+                        </td>
+                        <td>
+                            <button type="button" class="delete-btn" (click)="removeRow(i)">
+                                <span>&#10005;</span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="timesheet-footer">
+                <div class="total-hours">
+                    Total Hours: <strong>{{ getTotalHours() }}</strong>
+                </div>
+                <button type="submit" class="submit-btn" [disabled]="!timesheetForm.form.valid" (click)="submitTimesheet()">
+                    Submit Timesheet
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+.fullscreen-bg {
+    min-height: 100vh;
+    min-width: 100vw;
+    width: 100vw;
+    height: 100vh;
+    background: #f4f7fb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.timesheet-container {
+    max-width: 900px;
+    width: 100%;
+    margin: 0;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.15);
+    padding: 32px 40px 24px 40px;
+    animation: fadeIn 1s;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.timesheet-form {
+    width: 100%;
+}
+.timesheet-table {
+    margin-left: auto;
+    margin-right: auto;
+}
+.timesheet-table input,
+.timesheet-table select,
+.timesheet-table textarea {
+    color: #2d3a4b;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(40px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+.timesheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    width: 100%;
+}
+.timesheet-header h2 {
+    font-size: 2rem;
+    color: #2d3a4b;
+    margin: 0;
+    letter-spacing: 1px;
+}
+.add-row-btn {
+    background: #4f8cff;
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-shadow: 0 2px 8px rgba(79,140,255,0.08);
+}
+.add-row-btn:hover {
+    background: #2563eb;
+}
+.timesheet-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin-bottom: 18px;
+}
+.timesheet-table th, .timesheet-table td {
+    text-align: left;
+    padding: 12px 10px;
+}
+.timesheet-table th {
+    background: #f6f8fa;
+    color: #3a4a5d;
+    font-weight: 600;
+    border-radius: 6px 6px 0 0;
+}
+.timesheet-table tbody tr {
+    background: #f9fbfd;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.04);
+    transition: box-shadow 0.2s;
+}
+.timesheet-table tbody tr:hover {
+    box-shadow: 0 4px 16px rgba(44,62,80,0.10);
+}
+.timesheet-table input[type="date"],
+.timesheet-table input[type="text"],
+.timesheet-table input[type="number"],
+.timesheet-table select {
+    width: 100%;
+    padding: 7px 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    background: #fff;
+    font-size: 1rem;
+    transition: border 0.2s;
+}
+.timesheet-table input:focus,
+.timesheet-table select:focus {
+    border-color: #4f8cff;
+    outline: none;
+}
+.status {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    display: inline-block;
+}
+.status.Approved { background: #e6f9e6; color: #1a7f37;}
+.status.Pending { background: #fffbe6; color: #b59f00;}
+.status.Rejected { background: #ffeaea; color: #d32f2f;}
+.delete-btn {
+    background: none;
+    border: none;
+    color: #d32f2f;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s;
+    padding: 4px 8px;
+}
+.delete-btn:hover {
+    background: #ffeaea;
+}
+.timesheet-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 18px;
+    width: 100%;
+}
+.total-hours {
+    font-size: 1.1rem;
+    color: #2d3a4b;
+}
+.submit-btn {
+    background: linear-gradient(90deg, #4f8cff 0%, #2563eb 100%);
+    color: #fff;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(79,140,255,0.10);
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.submit-btn:disabled {
+    background: #bcd6fa;
+    cursor: not-allowed;
+}
+.submit-btn:hover:not(:disabled) {
+    background: linear-gradient(90deg, #2563eb 0%, #4f8cff 100%);
+    box-shadow: 0 4px 16px rgba(79,140,255,0.18);
+}
+</style> -->
