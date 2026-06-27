@@ -129,6 +129,18 @@ src/
 
 ---
 
+## Screenshots
+
+<div align="center">
+
+<img src="docs/screenshot2.png" alt="Login Page" width="48%"/> &nbsp; <img src="docs/screenshot3.png" alt="Home Dashboard" width="48%"/>
+
+<img src="docs/screenshot4.png" alt="App Store" width="48%"/> &nbsp; <img src="docs/screenshot5.png" alt="Timesheet" width="48%"/>
+
+</div>
+
+---
+
 ## Contributing
 
 1. Fork the repository
