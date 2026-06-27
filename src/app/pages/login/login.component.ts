@@ -3,6 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeService } from '../../shared/services/home.service';
 import { IAssociate } from '../../shared/models/associate.interface';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
 
  ngOnInit(): void {
      google.accounts.id.initialize({
-      client_id:'649322826561-69sbop9t6equ5vg9vpfddq2i3sm7l6po.apps.googleusercontent.com',
+      client_id: environment.googleClientId,
       callback:(resp:any) =>this.handleLogin(resp),
      });
 
