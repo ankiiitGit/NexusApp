@@ -13,6 +13,10 @@
 
 ---
 
+> **NexusApp** is the frontend for the [Unified Organizational Portal (UOP)](https://github.com/ankiiitGit/UOP).
+
+---
+
 ## Overview
 
 **NexusApp** is a unified employee intranet portal that consolidates day-to-day workplace tools into a single, modern interface. Built with Angular 19 and Tailwind CSS, it delivers a fast, responsive experience for associates to stay connected with their organisation.
