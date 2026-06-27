@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 185 48">
+  <!-- Hexagon frame -->
+  <polygon points="22,5 37,14 37,34 22,43 7,34 7,14"
+           fill="rgba(56,189,248,0.12)" stroke="#38bdf8" stroke-width="1.5"/>
+  <!-- Stylised N inside hex -->
+  <polyline points="12,35 12,13 31,35 31,13"
+            stroke="white" stroke-width="2.8" fill="none"
+            stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Wordmark -->
+  <text x="50" y="32"
+        font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif"
+        font-size="22" font-weight="700" fill="white" letter-spacing="4">NEXUS</text>
+</svg>

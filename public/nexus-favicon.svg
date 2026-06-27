@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Dark navy background tile -->
+  <rect width="32" height="32" rx="5" fill="#0f172a"/>
+  <!-- Hexagon frame -->
+  <polygon points="16,3 26,9 26,21 16,27 6,21 6,9"
+           fill="rgba(56,189,248,0.15)" stroke="#38bdf8" stroke-width="1.5"/>
+  <!-- Stylised N -->
+  <polyline points="10,22 10,10 22,22 22,10"
+            stroke="white" stroke-width="2.2" fill="none"
+            stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
