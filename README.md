@@ -1,59 +1,146 @@
-# Onecognizantui
+<div align="center">
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
+# NexusApp
 
-## Development server
+### A modern employee portal built for seamless workplace experience
 
-To start a local development server, run:
+[![Angular](https://img.shields.io/badge/Angular-19-dd0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.dev)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-4-38bdf8?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178c6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![License](https://img.shields.io/badge/License-Private-lightgrey?style=for-the-badge)](.)
+
+</div>
+
+---
+
+## Overview
+
+**NexusApp** is a unified employee intranet portal that consolidates day-to-day workplace tools into a single, modern interface. Built with Angular 19 and Tailwind CSS, it delivers a fast, responsive experience for associates to stay connected with their organisation.
+
+<div align="center">
+
+![NexusApp Dashboard](docs/screenshot.png)
+
+</div>
+
+---
+
+## Features
+
+| Feature | Description |
+|---|---|
+| **Secure Login** | Authenticated access with sign-in / sign-out flow |
+| **Personalised Dashboard** | Welcome banner, user profile, and quick-access widgets |
+| **Latest Tech News** | Swiper-powered news carousel with the latest updates |
+| **Trending Apps** | Browse and launch internal tools from an app carousel |
+| **App Store** | Discover and access the full catalogue of internal apps |
+| **Associate Details** | View your profile, role, and contact information at a glance |
+| **Holiday & Leave** | Track upcoming holidays and your leave balance |
+| **Compliance Status** | Stay on top of mandatory compliance tasks |
+| **Timesheet** | Log and manage your working hours |
+| **My Learning** | Access your learning and development resources |
+
+---
+
+## Tech Stack
+
+- **Framework:** [Angular 19](https://angular.dev) with standalone components and lazy-loaded routes
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com) via PostCSS
+- **Carousel:** [Swiper 11](https://swiperjs.com)
+- **Language:** TypeScript 5.7
+- **Testing:** Karma + Jasmine
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org) v18 or later
+- [Angular CLI](https://angular.dev/tools/cli) v19
 
 ```bash
-ng serve
+npm install -g @angular/cli
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Installation
 
 ```bash
-ng generate component component-name
+# Clone the repository
+git clone https://github.com/ankiiitGit/nexusui.git
+cd nexusui
+
+# Install dependencies
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Running Locally
 
 ```bash
-ng generate --help
+npm start
 ```
 
-## Building
+Navigate to `http://localhost:4200/`. The app hot-reloads on file changes.
 
-To build the project run:
+### Build for Production
 
 ```bash
-ng build
+npm run build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Compiled output is placed in the `dist/` directory, optimised for performance.
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Running Tests
 
 ```bash
-ng test
+npm test
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## Project Structure
 
-```bash
-ng e2e
+```
+src/
+├── app/
+│   ├── core/
+│   │   └── components/
+│   │       ├── header/        # Sticky navigation bar
+│   │       ├── footer/        # Footer
+│   │       ├── banner/        # Hero banner
+│   │       └── app-store/     # Internal app catalogue
+│   ├── pages/
+│   │   ├── login/             # Authentication page
+│   │   └── home/              # Main dashboard
+│   └── shared/
+│       ├── components/        # Reusable widgets
+│       │   ├── apps-carousal/
+│       │   ├── news-carousal/
+│       │   ├── associate-details/
+│       │   ├── holiday-leave-card/
+│       │   ├── compliance-status/
+│       │   ├── timesheet/
+│       │   └── learning/
+│       ├── models/            # TypeScript interfaces
+│       ├── pipes/             # Custom Angular pipes
+│       └── services/          # Auth and data services
+└── styles.css
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## Contributing
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m 'Add your feature'`
+4. Push to the branch: `git push origin feature/your-feature`
+5. Open a Pull Request
+
+---
+
+<div align="center">
+
+Made with ❤️ using Angular & Tailwind CSS
+
+</div>
